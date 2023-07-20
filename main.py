@@ -7,3 +7,4 @@ def plus(a, b) -> int:
 
 def get_path() -> str:
     return os.getcwd()
+
