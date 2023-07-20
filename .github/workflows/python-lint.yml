@@ -4,13 +4,13 @@ jobs:
   python-lint:
     runs-on: ubuntu-latest
     name: CI workflow
-    
+
     steps:
     - name: checkout source repo
       uses: actions/checkout@main
 
     - name: linting
-      uses: sokuli-bit/pylinter@main
+      uses: programmingwithalex/pylinter@main
       with:
         python-root: '.'
         flake8-flags: ''
