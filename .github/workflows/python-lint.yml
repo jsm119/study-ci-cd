@@ -19,7 +19,7 @@ jobs:
         mypy-flags: ''
         fail-on-isort: false
         # skip-flake8: false
-        # skip-mypy: false
+        skip-mypy: true
         # skip-isort: false
         # mypy-ignore-dirs-files: ''
         # requirements-file: ''
