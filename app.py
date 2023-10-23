@@ -4,9 +4,6 @@ import openai
 from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
@@ -38,3 +35,7 @@ def generate_prompt(characteristic):
         Names:""".format(
                 characteristic
         )
+
+
+if __name__ == "__main__":
+    app.run()
