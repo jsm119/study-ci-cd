@@ -2,6 +2,7 @@ import os
 
 import openai
 from flask import Flask, redirect, render_template, request, url_for
+
 from app.prompt import *
 from app.tool import *
 from main import *
