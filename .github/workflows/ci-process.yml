@@ -1,6 +1,6 @@
 
 
-name: Format Python Code
+name: CI Process
 on: push
 jobs:
   python-code-format:
