@@ -1,7 +1,4 @@
 import os
-
-import openai
-
 import openai
 from flask import Flask, redirect, render_template, request, url_for
 
@@ -9,13 +6,14 @@ app = Flask(__name__)
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-@app.route("/", methods=("GET", "POST"))
+@app.route("/", methods=("GET",
+ "POST"))
 def index():
     if request.method == "POST":
         characteristic = request.form["characteristic"]
         response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=generate_prompt(characteristic),
+                    model="text-davinci-003",
+                prompt=generate_prompt(characteristic),
             temperature=0.6,
         )
         return redirect(url_for("index", result=response.choices[0].text))
@@ -34,7 +32,8 @@ def generate_prompt(characteristic):
         Characteristics: 역도를 좋아하고 도마뱀을 좋아해
         Nicknames: 스내치 도마뱀
         Characteristics: {}
-        Names:""".format(characteristic)
+        Names:""".format(
+            characteristic)
 
 
 if __name__ == "__main__":
