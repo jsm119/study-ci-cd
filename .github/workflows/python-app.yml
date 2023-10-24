@@ -32,10 +32,11 @@ jobs:
 
     - name: Run
       run: |
+        black .
         isort .
         flake8 .
         autopep8 .
-        black .
+        
         
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
