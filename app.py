@@ -36,6 +36,5 @@ def generate_prompt(characteristic):
         Names:""".format(characteristic)
 
 
-
 if __name__ == "__main__":
     app.run()
