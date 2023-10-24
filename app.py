@@ -1,6 +1,5 @@
 import os
 import openai
-
 from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
@@ -32,6 +31,7 @@ def generate_prompt(characteristic):
         Characteristics: 역도를 좋아하고 도마뱀을 좋아해
         Nicknames: 스내치 도마뱀
         Characteristics: {}
+
         Names:""".format(characteristic)
 
 
