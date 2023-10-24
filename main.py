@@ -1,6 +1,5 @@
-import math
 import os
-
+import math
 
 def plus(a, b) -> int:
     return math.floor(a + b)
