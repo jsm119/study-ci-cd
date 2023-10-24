@@ -14,8 +14,6 @@ def word_count(sentence, word) -> int:
         return 0
 
 
-
-
 def plus(a, b) -> int:
     return math.floor(a + b)
 
