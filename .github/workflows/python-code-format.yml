@@ -22,9 +22,11 @@ jobs:
           isort .
       - name: commit format changes
         run: |
+          git config --global --add safe.directory /github/workspace
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A && git diff-index --cached --quiet HEAD || git commit -m ' Auto Code Format'
+          
       - name: push isort changes
         uses: ad-m/github-push-action@v0.5.0
         with:
