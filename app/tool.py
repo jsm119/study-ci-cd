@@ -12,3 +12,13 @@ def word_count(sentence, word) -> int:
         return sum([1 for x in sentence if x == word])
     else:
         return 0
+
+
+
+
+def plus(a, b) -> int:
+    return math.floor(a + b)
+
+
+def get_path() -> str:
+    return os.getcwd()
