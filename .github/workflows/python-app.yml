@@ -28,17 +28,17 @@ jobs:
         pip install flake8 pytest black isort
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Run Black
+    - name: Run
       run: |
         isort .
         black .
 
-    - name: Commit and Push Changes
-      run: |
-        git config user.name 'Github Actions'
-        git config --local user.email "action@github.com"
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        git commit -am "Format Python Code"
-        git push 
-
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: Auto Code Format
+        title: Fixes by format action
+        body: This is an auto-generated PR with fixes.
+        labels: automated pr
+        branch: automated-python-code-format
 
