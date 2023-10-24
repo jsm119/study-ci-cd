@@ -22,16 +22,11 @@ jobs:
           isort .
       - name: commit format changes
         run: |
-          git config --global --add safe.directory /github/workspace
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A && git diff-index --cached --quiet HEAD || git commit -m ' Auto Code Format'
-          
-      - name: push isort changes
-        uses: ad-m/github-push-action@v0.5.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "Automated format fixes"
+          git push           
       # - name: Create Pull Request
       #   uses: peter-evans/create-pull-request@v3
       #   with:
