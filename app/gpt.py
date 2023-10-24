@@ -1,4 +1,3 @@
-
 def generate_prompt(characteristic: str):
     return """Suggest Nickname for an friend of mine in korean.
 
