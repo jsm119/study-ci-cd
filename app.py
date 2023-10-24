@@ -12,9 +12,9 @@ def index():
     if request.method == "POST":
         characteristic = request.form["characteristic"]
         response = openai.Completion.create(
-                                    model="text-davinci-003",
-                                        prompt=generate_prompt(characteristic),
-                                    temperature=0.6,
+                model="text-davinci-003",
+                prompt=generate_prompt(characteristic),
+                temperature=0.6,
                                 )
         return redirect(url_for("index", result=response.choices[0].text))
 
