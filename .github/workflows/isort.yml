@@ -1,22 +1,31 @@
-name: Run isort
+name: Sort imports with isort
+
 on:
-  - push
+  pull_request:
+    branches: [master]
+    types: [closed]
 
 jobs:
-  build:
+  format:
+
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-      - uses: isort/isort-action@master
-        with:
-            requirementsFiles: "requirements.txt"
-      - name: Push changes
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --local user.email "action@github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "Automated isort fixes"
-          git push 
+    - uses: actions/checkout@v2
+      
+    - name: Run isort
+      uses: olance/isort-action@v1.0.0
+      with:
+        args: .
+      
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A && git diff-index --cached --quiet HEAD || git commit -m 'Automated isort fixes'
+      
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
