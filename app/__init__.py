@@ -2,7 +2,9 @@ import os
 
 import openai
 from flask import Flask, redirect, render_template, request, url_for
-from gpt import *
+from app.prompt import *
+from app.tool import *
+from main import *
 
 app = Flask(__name__)
 openai.api_key = os.getenv("OPENAI_API_KEY")
