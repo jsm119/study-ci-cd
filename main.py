@@ -2,7 +2,6 @@ import math
 import os
 
 
-
 def plus(a, b) -> int:
     return math.floor(a + b)
 
