@@ -11,8 +11,8 @@ def index():
     if request.method == "POST":
         characteristic = request.form["characteristic"]
         response = openai.Completion.create(
-                    model="text-davinci-003",
-                prompt=generate_prompt(characteristic),
+            model="text-davinci-003",
+            prompt=generate_prompt(characteristic),
             temperature=0.6,
         )
         return redirect(url_for("index", result=response.choices[0].text))
@@ -21,8 +21,7 @@ def index():
     return render_template("index.html", result=result)
 
 
-def generate_prompt(
-    characteristic):
+def generate_prompt(characteristic):
     return """Suggest Nickname for an friend of mine in korean.
 
         Characteristics: 키가 크고 뚱뚱해
@@ -32,7 +31,7 @@ def generate_prompt(
         Characteristics: 역도를 좋아하고 도마뱀을 좋아해
         Nicknames: 스내치 도마뱀
         Characteristics: {}
-        Names:""".format(               characteristic)
+        Names:""".format(characteristic)
 
 
 if __name__ == "__main__":
