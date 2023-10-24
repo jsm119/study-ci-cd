@@ -20,14 +20,24 @@ jobs:
           black .
           autopep8 --recursive --in-place --aggressive --aggressive .
           isort .
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+      - name: commit format changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A && git diff-index --cached --quiet HEAD || git commit -m ' Auto Code Format'
+      - name: push isort changes
+        uses: ad-m/github-push-action@v0.5.0
         with:
-          commit-message: Auto code format
-          title: Fixes by format action
-          body: This is an auto-generated PR with fixes.
-          labels: automated pr
-          branch: python-code-format-patches
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+      # - name: Create Pull Request
+      #   uses: peter-evans/create-pull-request@v3
+      #   with:
+      #     commit-message: Auto Code Format
+      #     title: Fixes by format action
+      #     body: This is an auto-generated PR with fixes.
+      #     labels: automated pr
+      #     branch: python-code-format-patches
   pytest:
     runs-on: ubuntu-20.04
     steps:
