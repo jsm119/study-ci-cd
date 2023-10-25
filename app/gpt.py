@@ -9,5 +9,5 @@ def generate_prompt(characteristic: str):
         Nicknames: 스내치 도마뱀
         Characteristics: {}
         Names:""".format(
-     characteristic
+        characteristic
     )
