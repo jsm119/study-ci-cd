@@ -1,9 +1,8 @@
-import os
 
 import openai
-from flask import Flask, redirect, render_template, request, url_for
-
 from app import gpt, tool
+from flask import Flask, redirect, render_template, request, url_for
+import os
 
 app = Flask(__name__)
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -15,7 +14,7 @@ def index():
         print(tool.sub(45, 9))
         characteristic = request.form["characteristic"]
         response = openai.Completion.create(
-            model="text-davinci-003",
+                 model="text-davinci-003",
             prompt=gpt.generate_prompt(characteristic),
             temperature=0.6,
         )
