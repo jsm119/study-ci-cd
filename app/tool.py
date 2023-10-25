@@ -13,10 +13,3 @@ def word_count(sentence, word) -> int:
     else:
         return 0
 
-
-def plus(a, b) -> int:
-    return math.floor(a + b)
-
-
-def get_path() -> str:
-    return os.getcwd()
