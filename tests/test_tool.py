@@ -1,5 +1,7 @@
 import pytest
+
 from app import tool
+
 
 def test_sub():
     assert tool.sub(3, 4) == -1
