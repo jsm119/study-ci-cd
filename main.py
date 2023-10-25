@@ -9,7 +9,7 @@ def add(a, b) -> int:
 def to_sentence(s) -> str:
     s = s.capitalize()
 
-    if s.endswith('.'):
+    if s.endswith("."):
         return s
     else:
-        return s + '.'
+        return s + "."

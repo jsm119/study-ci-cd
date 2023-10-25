@@ -12,4 +12,3 @@ def word_count(sentence, word) -> int:
         return sum([1 for x in sentence if x == word])
     else:
         return 0
-
