@@ -42,7 +42,7 @@ jobs:
       - name: Formatter
         run: |
           black .
-          autopep8 .
+          autopep8 --recursive --in-place --aggressive .
           isort .
       - name: Commit format changes
         run: |
