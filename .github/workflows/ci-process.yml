@@ -1,7 +1,13 @@
 
 
 name: CI Process
-on: push
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
 jobs:
   python-code-format:
     runs-on: ubuntu-20.04
