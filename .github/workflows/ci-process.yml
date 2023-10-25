@@ -1,12 +1,10 @@
-
-
 name: CI Process
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master, develop, deploy ]
   pull_request:
-    branches: [ main ]
+    branches: [ master, develop, deploy ]
     
 jobs:
   pytest:
@@ -60,3 +58,5 @@ jobs:
       #     labels: automated pr
       #     branch: python-code-format-patches
 
+
+  

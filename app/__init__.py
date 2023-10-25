@@ -7,7 +7,7 @@ from app import gpt, tool
 
 app = Flask(__name__)
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
+print('무야호~')
 
 @app.route("/", methods=("GET", "POST"))
 def index():
