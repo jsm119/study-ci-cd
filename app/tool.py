@@ -2,7 +2,7 @@
 import os
 import math
 def sub(a, b) -> int:
-    return math.floor(a - b)
+    return math.floor(a + b)
 def word_count(sentence, word) -> int:
     sentence = sentence.lower().split()
     if word in sentence:
