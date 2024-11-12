@@ -1,0 +1,34 @@
+name: Python Application  # 프로젝트의 이름을 정의
+
+on:
+  push:
+    branches: [ "main" ]  # "main" 브랜치로 push가 발생할 때 이 액션을 실행
+  pull_request:
+    branches: [ "main" ]  # "main" 브랜치로 pull request가 발생할 때 이 액션을 실행
+
+permissions:
+  contents: read  # 이 액션이 읽기 권한을 가지도록 정의
+
+jobs:
+  build:  # "build" 라는 작업을 정의
+
+    runs-on: ubuntu-latest  # Ubuntu 환경에서 실행
+
+    steps:  # 작업 단계를 정의
+    - uses: actions/checkout@v3  # GitHub 리포지토리를 체크아웃하여 사용
+    - name: Set up Python 3.10 with pyenv  # pyenv를 사용하여 Python 3.10을 설정
+      run: |
+        pyenv install 3.10.0  # pyenv를 통해 Python 3.10.0 설치
+        pyenv global 3.10.0  # Python 3.10.0을 전역으로 설정
+        python -m pip install --upgrade pip  # pip 업그레이드
+        pip install pipenv  # pipenv 설치
+    - name: Install dependencies with pipenv  # pipenv를 사용하여 의존성 설치
+      run: |
+        pipenv install --dev  # Pipfile에 정의된 개발 의존성 포함하여 설치
+    - name: Lint with flake8  # flake8을 사용하여 코드 스타일과 오류 검사
+      run: |
+        pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics  # Python 구문 오류 또는 정의되지 않은 이름이 있을 경우 빌드 중지
+        pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics  # 모든 오류를 경고로 처리
+    - name: Test with pytest  # pytest를 사용하여 테스트 실행
+      run: |
+        pipenv run pytest  # pipenv 환경에서 pytest 실행
